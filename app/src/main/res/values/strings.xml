@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">General</string>
+    <string name="app_name">AboutMe</string>
     <string name="hello">Привет!</string>
     <string name="toReturn">Вернуться</string>
     <string name="welcomeNewUser">Приветствую тебя, новый пользователь, в этом приложении!\nМы ещё не знакомы!\nДавай это исправлять!</string>
@@ -8,13 +8,12 @@
     <string name="areYouSure">А ты уверен(а)?</string>
     <string name="great">Замечательно!</string>
     <string name="tellAboutYou">Расскажи мне немного о себе</string>
-    <string name="back">Назад</string>
-    <string name="forward">Вперед</string>
+    <string name="requiredField">Обязательное поле</string>
     <string name="finish">Завершить</string>
     <string name="Names">ФИО</string>
-    <string name="firstName">Имя</string>
-    <string name="lastName">Фамилия</string>
-    <string name="patronymic">Отчество (если есть)</string>
+    <string name="firstName">Имя <font color="#FF0000">*</font></string>
+    <string name="lastName">Фамилия <font color="#FF0000">*</font></string>
+    <string name="patronymic">Отчество</string>
     <string name="otherInfo">Другая информация</string>
     <string name="genger">Пол</string>
     <string name="male">Мужской</string>

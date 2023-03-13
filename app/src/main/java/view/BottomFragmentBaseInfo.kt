@@ -6,17 +6,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import view.baseInfo.NameFragment
 import viewModel.BaseInfoAdapter
 import kotlin.math.abs
 
 class BottomFragmentBaseInfo: BottomSheetDialogFragment() {
 
     private lateinit var viewPager2: ViewPager2
+    private val listPages = listOf(
+        NameFragment(),
+        NameFragment(),
+        NameFragment(),
+        NameFragment(),
+        NameFragment()
+    )
+    private var lastActivePage = 0
 
     override fun getTheme() = R.style.AppBottomSheetDialogTheme
 
@@ -29,7 +37,6 @@ class BottomFragmentBaseInfo: BottomSheetDialogFragment() {
         val binding = inflater.inflate(R.layout.bottom_sheet_base_info_layout, container, false)
 
         viewPager2 = binding.findViewById(R.id.baseInfoViewPager2)
-
         viewPager2.offscreenPageLimit = 1
 
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewPagerNextItemVisible)
@@ -37,7 +44,6 @@ class BottomFragmentBaseInfo: BottomSheetDialogFragment() {
 
         val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
         val pageTransformer = ViewPager2.PageTransformer { page, position ->
-            Toast.makeText(context, "position $position", Toast.LENGTH_SHORT).show()
             page.translationX = -pageTranslationX * position
             page.scaleY = 1 - (0.25f * abs(position))
         }
@@ -47,25 +53,26 @@ class BottomFragmentBaseInfo: BottomSheetDialogFragment() {
             R.dimen.viewPagerCurrentItemHorizontalMargin
         )
         viewPager2.addItemDecoration(itemDecoration)
-
         viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
-
-            override fun onPageScrollStateChanged(state: Int) {}
 
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
-            ) {}
+            ) {
+                if (positionOffset >= 0.5f && !listPages[position].isValid())
+                    viewPager2.currentItem = lastActivePage
+                else lastActivePage = position
+            }
 
-            override fun onPageSelected(position: Int) {}
         })
+
         return binding
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        val adapter = BaseInfoAdapter(this)
-        viewPager2.adapter = BaseInfoAdapter(this)
+        val adapter = BaseInfoAdapter(this, listPages)
+        viewPager2.adapter = adapter
     }
 
     private inner class HorizontalMarginItemDecoration(

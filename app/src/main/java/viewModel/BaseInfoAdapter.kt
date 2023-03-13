@@ -1,19 +1,23 @@
 package viewModel
 
+import about.me.R
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import view.baseInfo.NameFragment
 
-class BaseInfoAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
+class BaseInfoAdapter(
+    private val fragment: Fragment,
+    private val listFragments: List<Fragment>
+): FragmentStateAdapter(fragment) {
 
-    override fun getItemCount() = 5
+    override fun getItemCount() = listFragments.size
 
     override fun createFragment(position: Int): Fragment {
-        val fragment = NameFragment()
-        fragment.arguments = Bundle().apply {
-            putInt("position", position + 1)
+        val currentFragment = listFragments[position]
+        currentFragment.arguments = Bundle().apply {
+            putString("position", fragment.requireContext().getString(R.string.part, position + 1, itemCount))
         }
-        return fragment
+        return currentFragment
     }
+
 }

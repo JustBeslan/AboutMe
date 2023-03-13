@@ -15,11 +15,17 @@
         android:padding="10dp">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/firstNameLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:hint="@string/firstName"
-            app:boxStrokeColor="@color/purple_500">
+            app:boxStrokeColor="@color/purple_500"
+            app:endIconMode="clear_text"
+            app:counterEnabled="true"
+            app:errorEnabled="true"
+            app:errorTextColor="#FF0000"
+            app:boxStrokeErrorColor="#FF0000">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/firstName"
@@ -28,11 +34,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lastNameLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:hint="@string/lastName"
-            app:boxStrokeColor="@color/purple_500">
+            app:boxStrokeColor="@color/purple_500"
+            app:endIconMode="clear_text"
+            app:counterEnabled="true"
+            app:errorEnabled="true"
+            app:errorTextColor="#FF0000"
+            app:boxStrokeErrorColor="#FF0000">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/lastName"
@@ -43,9 +55,10 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:hint="@string/patronymic"
-            app:boxStrokeColor="@color/purple_500">
+            app:boxStrokeColor="@color/purple_500"
+            app:counterEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/patronymic"
