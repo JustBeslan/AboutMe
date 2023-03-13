@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">General</string>
+    <string name="hello">Привет!</string>
+    <string name="toReturn">Вернуться</string>
+    <string name="welcomeNewUser">Приветствую тебя, новый пользователь, в этом приложении!\nМы ещё не знакомы!\nДавай это исправлять!</string>
+    <string name="good">Хорошо</string>
+    <string name="exit">Выйти</string>
+    <string name="areYouSure">А ты уверен(а)?</string>
+    <string name="great">Замечательно!</string>
+    <string name="tellAboutYou">Расскажи мне немного о себе</string>
+    <string name="back">Назад</string>
+    <string name="forward">Вперед</string>
+    <string name="finish">Завершить</string>
+    <string name="Names">ФИО</string>
+    <string name="firstName">Имя</string>
+    <string name="lastName">Фамилия</string>
+    <string name="patronymic">Отчество (если есть)</string>
+    <string name="otherInfo">Другая информация</string>
+    <string name="genger">Пол</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="dateOfBirth">Дата рождения</string>
+    <string name="city">Город</string>
+    <string name="save">Сохранить</string>
+    <string name="clear">Очистить</string>
+    <string name="warningNotFillForm">Заполни, пожалуйста, все необходимые поля</string>
+    <string name="warningDeniedPermission">Без этого разрешения не могу получить твое местоположение!</string>
+    <string name="swipeUpForChooseAction">Потяни вверх для выбора действия</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="part">%d/%d</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <dimen name="viewPagerNextItemVisible">26dp</dimen>
+    <dimen name="viewPagerCurrentItemHorizontalMargin">32dp</dimen>
+</resources>
