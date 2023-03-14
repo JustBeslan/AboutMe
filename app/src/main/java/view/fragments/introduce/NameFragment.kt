@@ -1,4 +1,4 @@
-package view.baseInfo
+package view.fragments.introduce
 
 import about.me.R
 import android.os.Bundle
@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import model.Profile
 
 class NameFragment : Fragment() {
 
@@ -21,45 +22,29 @@ class NameFragment : Fragment() {
     private lateinit var lastNameTextInputEditText: TextInputEditText
     private lateinit var patronymicTextInputEditText: TextInputEditText
 
-    lateinit var firstName: String
-    lateinit var lastName: String
-    lateinit var patronymic: String
-
-    // TODO: Rename and change types of parameters
-//    private var param1: String? = null
-//    private var param2: String? = null
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-//    }
+    private lateinit var firstName: String
+    private lateinit var lastName: String
+    private lateinit var patronymic: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View? = inflater.inflate(R.layout.fragment_name, container, false)
 
-        val binding = inflater.inflate(R.layout.fragment_name, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        firstNameTextInputLayout = binding.findViewById(R.id.firstNameLayout)
-        lastNameTextInputLayout = binding.findViewById(R.id.lastNameLayout)
+        firstNameTextInputLayout = view.findViewById(R.id.firstNameLayout)
+        lastNameTextInputLayout = view.findViewById(R.id.lastNameLayout)
 
-        firstNameTextInputEditText = binding.findViewById(R.id.firstName)
-        lastNameTextInputEditText = binding.findViewById(R.id.lastName)
-        patronymicTextInputEditText = binding.findViewById(R.id.patronymic)
+        firstNameTextInputEditText = view.findViewById(R.id.firstName)
+        lastNameTextInputEditText = view.findViewById(R.id.lastName)
+        patronymicTextInputEditText = view.findViewById(R.id.patronymic)
 
         firstNameTextInputEditText.addTextChangedListener(TextFieldValidation(firstNameTextInputEditText))
         lastNameTextInputEditText.addTextChangedListener(TextFieldValidation(lastNameTextInputEditText))
 
-        return binding
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.takeIf { it.containsKey("position") }?.apply {
-            val editText = view.findViewById<TextView>(R.id.testTextView)
+            val editText = view.findViewById<TextView>(R.id.indicatorPage)
             editText.text = getString("position")
         }
     }
@@ -82,7 +67,19 @@ class NameFragment : Fragment() {
         return lastName.isNotEmpty()
     }
 
-    fun isValid(): Boolean {
+    fun validate(callback: (Boolean)->Unit) {
+        if (isValid()) {
+            if (Profile.firstName != firstName)
+                Profile.firstName = firstName
+            if (Profile.lastName != lastName)
+                Profile.lastName = lastName
+            if (Profile.patronymic != patronymic)
+                Profile.patronymic = patronymic
+        }
+        callback(isValid())
+    }
+
+    private fun isValid(): Boolean {
         patronymic = patronymicTextInputEditText.text.toString()
         return validateFirstName() && validateLastName()
     }
@@ -97,26 +94,5 @@ class NameFragment : Fragment() {
                 R.id.lastName -> validateLastName()
             }
         }
-
     }
-
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment NameFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            NameFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
 }

@@ -3,6 +3,7 @@ package view
 import about.me.R
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import view.fragments.WelcomeBottomSheet
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,9 +11,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        BottomFragmentWelcome().apply {
-            isCancelable = false
-            show(supportFragmentManager, "WelcomeNewUser_BottomSheetDialog")
+        supportFragmentManager.let {
+                WelcomeBottomSheet().apply {
+                isCancelable = false
+                show(supportFragmentManager, WelcomeBottomSheet.TAG)
+            }
         }
     }
 }

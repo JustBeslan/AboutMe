@@ -1,4 +1,4 @@
-package view
+package view.fragments
 
 import about.me.R
 import android.os.Bundle
@@ -9,7 +9,11 @@ import android.widget.Button
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlin.system.exitProcess
 
-class BottomFragmentExit: BottomSheetDialogFragment() {
+class ExitBottomSheet: BottomSheetDialogFragment() {
+
+    companion object {
+        const val TAG = "ExitBottomSheet"
+    }
 
     override fun getTheme() = R.style.AppBottomSheetDialogTheme
 

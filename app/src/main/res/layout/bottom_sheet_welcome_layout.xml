@@ -26,14 +26,14 @@
             android:src="@drawable/welcome_hand"
             android:contentDescription="@string/hello" />
         <TextView
-            android:id="@+id/welcomeNewUserTitleTextView"
+            android:id="@+id/introduceTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hello"
             android:textColor="@color/black"
             android:textSize="25sp"/>
         <TextView
-            android:id="@+id/welcomeNewUserSubtextTextView"
+            android:id="@+id/introduceSubtextTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/welcomeNewUser"

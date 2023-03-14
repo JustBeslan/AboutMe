@@ -9,25 +9,33 @@
     <string name="great">Замечательно!</string>
     <string name="tellAboutYou">Расскажи мне немного о себе</string>
     <string name="requiredField">Обязательное поле</string>
-    <string name="finish">Завершить</string>
-    <string name="Names">ФИО</string>
+
+<!--    <string name="finish">Завершить</string>-->
+<!--    <string name="Names">ФИО</string>-->
     <string name="firstName">Имя <font color="#FF0000">*</font></string>
     <string name="lastName">Фамилия <font color="#FF0000">*</font></string>
     <string name="patronymic">Отчество</string>
-    <string name="otherInfo">Другая информация</string>
-    <string name="genger">Пол</string>
-    <string name="male">Мужской</string>
-    <string name="female">Женский</string>
-    <string name="dateOfBirth">Дата рождения</string>
-    <string name="city">Город</string>
-    <string name="save">Сохранить</string>
-    <string name="clear">Очистить</string>
-    <string name="warningNotFillForm">Заполни, пожалуйста, все необходимые поля</string>
-    <string name="warningDeniedPermission">Без этого разрешения не могу получить твое местоположение!</string>
+<!--    <string name="otherInfo">Другая информация</string>-->
+<!--    <string name="genger">Пол</string>-->
+<!--    <string name="male">Мужской</string>-->
+<!--    <string name="female">Женский</string>-->
+<!--    <string name="dateOfBirth">Дата рождения</string>-->
+<!--    <string name="city">Город</string>-->
+<!--    <string name="save">Сохранить</string>-->
+<!--    <string name="clear">Очистить</string>-->
+<!--    <string name="warningNotFillForm">Заполни, пожалуйста, все необходимые поля</string>-->
+<!--    <string name="warningDeniedPermission">Без этого разрешения не могу получить твое местоположение!</string>-->
     <string name="swipeUpForChooseAction">Потяни вверх для выбора действия</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="part">%d/%d</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="errorGender">Ты не выбрал свой пол</string>
+
+    <string-array name="helperTitles">
+        <item>Как тебя зовут?</item>
+        <item>Какого ты пола?</item>
+        <item>Когда ты родился?</item>
+        <item>Где ты сейчас находишься?</item>
+    </string-array>
+
+    <string name="page">%d/%d</string>
 
     <dimen name="viewPagerNextItemVisible">26dp</dimen>
     <dimen name="viewPagerCurrentItemHorizontalMargin">32dp</dimen>

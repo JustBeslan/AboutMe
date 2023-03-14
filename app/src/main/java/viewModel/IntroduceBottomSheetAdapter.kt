@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class BaseInfoAdapter(
+class IntroduceBottomSheetAdapter(
     private val fragment: Fragment,
     private val listFragments: List<Fragment>
 ): FragmentStateAdapter(fragment) {
@@ -15,7 +15,7 @@ class BaseInfoAdapter(
     override fun createFragment(position: Int): Fragment {
         val currentFragment = listFragments[position]
         currentFragment.arguments = Bundle().apply {
-            putString("position", fragment.requireContext().getString(R.string.part, position + 1, itemCount))
+            putString("position", fragment.requireContext().getString(R.string.page, position + 1, itemCount))
         }
         return currentFragment
     }

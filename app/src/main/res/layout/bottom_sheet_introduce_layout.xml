@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingStart="10dp"
@@ -29,23 +28,30 @@
             android:src="@drawable/great_hand"
             android:contentDescription="@string/great" />
         <TextView
-            android:id="@+id/welcomeNewUserTitleTextView"
+            android:id="@+id/introduceTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/great"
             android:textColor="@color/black"
             android:textSize="25sp"/>
         <TextView
-            android:id="@+id/welcomeNewUserSubtextTextView"
+            android:id="@+id/introduceSubtextTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tellAboutYou"
             android:textAlignment="center"
             android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/helperTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_500"
+            android:textAlignment="center"
+            android:textSize="12sp"/>
     </LinearLayout>
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/baseInfoViewPager2"
+        android:id="@+id/introduceViewPager2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
