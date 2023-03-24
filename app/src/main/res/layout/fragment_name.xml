@@ -1,76 +1,85 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
-    app:cardUseCompatPadding="true"
-    tools:context="view.fragments.introduce.NameFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="nameFragmentViewModel"
+            type="viewModel.fragments.introduce.NameFragmentViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
+        tools:context="view.fragments.introduce.NameFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/firstNameLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:hint="@string/firstName"
-            app:boxStrokeColor="@color/purple_500"
-            app:endIconMode="clear_text"
-            app:counterEnabled="true"
-            app:errorEnabled="true"
-            app:errorTextColor="#FF0000"
-            app:boxStrokeErrorColor="#FF0000">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/firstName"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/lastNameLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:hint="@string/lastName"
-            app:boxStrokeColor="@color/purple_500"
-            app:endIconMode="clear_text"
-            app:counterEnabled="true"
-            app:errorEnabled="true"
-            app:errorTextColor="#FF0000"
-            app:boxStrokeErrorColor="#FF0000">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/lastName"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:hint="@string/patronymic"
-            app:boxStrokeColor="@color/purple_500"
-            app:counterEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/patronymic"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/indicatorPage"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:padding="10dp">
 
-</androidx.cardview.widget.CardView>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:hint="@string/firstName"
+                errorText='@{nameFragmentViewModel.firstName.empty ? @string/requiredField : ""}'
+                app:boxStrokeColor="@color/purple_500"
+                app:endIconMode="clear_text"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
+                app:errorTextColor="#FF0000"
+                app:boxStrokeErrorColor="#FF0000">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@={nameFragmentViewModel.firstName}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:hint="@string/lastName"
+                errorText='@{nameFragmentViewModel.lastName.empty ? @string/requiredField : ""}'
+                app:boxStrokeColor="@color/purple_500"
+                app:endIconMode="clear_text"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
+                app:errorTextColor="#FF0000"
+                app:boxStrokeErrorColor="#FF0000">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@={nameFragmentViewModel.lastName}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:hint="@string/patronymic"
+                app:boxStrokeColor="@color/purple_500"
+                app:counterEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@={nameFragmentViewModel.patronymic}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/indicatorPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

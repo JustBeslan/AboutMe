@@ -1,27 +1,30 @@
 package view.fragments
 
 import about.me.R
+import about.me.databinding.BottomSheetWelcomeBinding
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.LinearLayout
+import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import viewModel.WelcomeBottomSheetViewModel
+import viewModel.fragments.WelcomeBottomSheetViewModel
 
 class WelcomeBottomSheet: BottomSheetDialogFragment() {
 
     companion object {
         const val TAG = "WelcomeBottomSheet"
-        private const val COLLAPSED_HEIGHT = 228
     }
 
-    private lateinit var layoutCollapsed: LinearLayout
-    private lateinit var layoutExpanded: LinearLayout
-    private lateinit var welcomeBottomSheetViewModel: WelcomeBottomSheetViewModel
+    private lateinit var binding: BottomSheetWelcomeBinding
+    private val viewModel: WelcomeBottomSheetViewModel by viewModels {
+        WelcomeBottomSheetViewModel.Companion.WelcomeBottomSheetFactory(
+            object: WelcomeBottomSheetViewModel.WelcomeBottomSheetContract {
+                override fun getFragmentManager() = childFragmentManager
+            }
+        )
+    }
 
     override fun getTheme() = R.style.AppBottomSheetDialogTheme
 
@@ -29,56 +32,32 @@ class WelcomeBottomSheet: BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.bottom_sheet_welcome_layout, container, false)
+    ): View {
+        binding = BottomSheetWelcomeBinding.inflate(
+            inflater,
+            container,
+            false
+        ).apply {
+            lifecycleOwner = viewLifecycleOwner
+        }
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        layoutCollapsed = view.findViewById(R.id.layout_collapsed)
-        layoutExpanded = view.findViewById(R.id.layout_expanded)
-
-        welcomeBottomSheetViewModel = WelcomeBottomSheetViewModel(requireActivity().supportFragmentManager)
-        view.findViewById<Button>(R.id.exitButton).setOnClickListener { welcomeBottomSheetViewModel.showExitBottomSheet() }
-        view.findViewById<Button>(R.id.goodButton).setOnClickListener {
-            this.dismiss()
-            welcomeBottomSheetViewModel.showIntroduceBottomSheet()
+        binding.apply {
+            welcomeBottomSheetViewModel = viewModel
         }
     }
 
     override fun onStart() {
         super.onStart()
-
-        val density = requireContext().resources.displayMetrics.density
-
         dialog?.let {
-            val bottomSheet = it.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
-            val behavior = BottomSheetBehavior.from(bottomSheet)
-
-            behavior.peekHeight = (COLLAPSED_HEIGHT * density).toInt()
-            behavior.state = BottomSheetBehavior.STATE_COLLAPSED
-
-            behavior.addBottomSheetCallback(BottomSheetCallback())
-        }
-    }
-
-    private inner class BottomSheetCallback: BottomSheetBehavior.BottomSheetCallback() {
-
-        override fun onStateChanged(bottomSheet: View, newState: Int) {}
-
-        override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            if (slideOffset > 0) {
-                layoutCollapsed.alpha = 1 - 2 * slideOffset
-                layoutExpanded.alpha = slideOffset * slideOffset
-
-                if (slideOffset > 0.5) {
-                    layoutCollapsed.visibility = View.GONE
-                    layoutExpanded.visibility = View.VISIBLE
-                }
-
-                if (slideOffset < 0.5 && layoutExpanded.visibility == View.VISIBLE) {
-                    layoutCollapsed.visibility = View.VISIBLE
-                    layoutExpanded.visibility = View.INVISIBLE
-                }
-            }
+            viewModel.configureBehavior(
+                BottomSheetBehavior.from(requireView().parent as View),
+                requireContext().resources.displayMetrics.density,
+                binding.layoutCollapsed,
+                binding.layoutExpanded
+            )
         }
     }
 }

@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners
-        android:bottomLeftRadius="0dp"
-        android:bottomRightRadius="0dp"
-        android:topLeftRadius="10dp"
-        android:topRightRadius="10dp"/>
-    <padding
-        android:bottom="0dp"
-        android:right="0dp"
-        android:left="0dp"
-        android:top="0dp"/>
-    <solid
-        android:color="@color/white"/>
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="30dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+    <item android:top="20dp">
+        <shape android:shape="rectangle">
+            <corners
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"
+                android:topLeftRadius="10dp"
+                android:topRightRadius="10dp" />
+            <padding
+                android:bottom="0dp"
+                android:left="0dp"
+                android:right="0dp"
+                android:top="0dp" />
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+    <item
+        android:gravity="top|center"
+        android:top="5dp"
+        android:right="150dp"
+        android:left="150dp">
+        <shape android:shape="rectangle">
+            <corners
+                android:bottomLeftRadius="10dp"
+                android:bottomRightRadius="10dp"
+                android:topLeftRadius="10dp"
+                android:topRightRadius="10dp" />
+            <size android:height="5dp"/>
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+</layer-list>
